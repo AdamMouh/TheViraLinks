@@ -186,7 +186,7 @@ body {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* ===== Buttons ===== */
+/* ===== Buttons - Existing CTA and Submit ===== */
 .btn-cta,
 .btn-submit {
     display: inline-block;
@@ -244,9 +244,31 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* ===== Services Section ===== */
+/* ===== NEW BUTTON STYLE: .btn-primary (for Mission Section CTA) ===== */
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--glass-pink), var(--glass-purple)); /* Un dégradé plus solide */
+    color: var(--white);
+    padding: 16px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    box-shadow: 0 10px 30px rgba(181, 81, 199, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 25px; /* Espace après le texte */
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px); /* Léger soulèvement */
+    box-shadow: 0 15px 40px rgba(181, 81, 199, 0.6);
+}
+
+
+/* ===== Sections General Styles (Mission added here) ===== */
 .services,
-.mission,
+.mission, /* Ajouté ici */
 .team,
 .contact-section {
     padding: 80px 20px;
@@ -312,31 +334,45 @@ body {
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Mission Section ===== */
-.mission-content {
-    max-width: 900px;
-    margin: 0 auto;
+/* ===== Mission Section (Nouveaux Styles) ===== */
+.mission {
+    /* Utilise le padding défini dans le groupe de sections ci-dessus */
     text-align: center;
-    opacity: 0;
+    /* Crée un bloc visuellement distinct avec un effet Glassmorphism léger */
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(5px);
+    border-top: 1px solid var(--white-border);
+    border-bottom: 1px solid var(--white-border);
 }
 
-.mission-content.fade-in {
-    opacity: 1;
-    animation: fadeInUp 0.8s ease forwards;
+.mission .container {
+    max-width: 900px; /* Limite la largeur du texte pour la lisibilité */
 }
 
-.mission-content h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-}
-
-.mission-content p {
-    font-size: 1.2rem;
-    line-height: 1.8;
+.mission-text {
+    font-size: 1.8rem;
+    font-weight: 500;
     margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    /* Dégradé pour le texte clé */
+    background: linear-gradient(135deg, var(--white) 0%, var(--glass-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(181, 81, 199, 0.3);
 }
+
+.mission p:not(.mission-text) {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Retrait des styles inutilisés car le HTML a été simplifié */
+/* .mission-content est maintenant le container de la section mission */
+/* .mission-content.fade-in { opacity: 1; animation: fadeInUp 0.8s ease forwards; } */
+/* .mission-content h2, p sont gérés par les styles ci-dessus */
 
 /* ===== What Makes Us Different Section ===== */
 .different {
@@ -492,7 +528,7 @@ body {
     }
 }
 
-/* ===== Responsive Design ===== */
+/* ===== Responsive Design (Ajout de la section mission) ===== */
 @media (max-width: 768px) {
     .nav-links {
         position: fixed;
@@ -541,6 +577,14 @@ body {
         font-size: 1.2rem;
     }
 
+    .mission-text { /* Ajustement pour mobile */
+        font-size: 1.4rem;
+    }
+
+    .mission p:not(.mission-text) {
+        font-size: 1rem;
+    }
+
     .section-title {
         font-size: 2rem;
     }
@@ -579,7 +623,8 @@ body {
     }
 
     .btn-cta,
-    .btn-submit {
+    .btn-submit,
+    .btn-primary { /* Ajout du nouveau bouton ici */
         padding: 12px 30px;
         font-size: 1rem;
     }
