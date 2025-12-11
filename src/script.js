@@ -56,16 +56,10 @@ sectionTitles.forEach(title => {
     observer.observe(title);
 });
 
-// Observe mission section
+// Observe mission section (CORRECTION APPLIQUÉE ICI)
 const missionSection = document.querySelector('.mission');
 if (missionSection) {
     observer.observe(missionSection);
-}
-
-// Observe la nouvelle section image-cta (NOUVEL AJOUT)
-const influencerVisual = document.querySelector('.influencer-visual');
-if (influencerVisual) {
-    observer.observe(influencerVisual);
 }
 
 // ===== Contact Form Handling =====
