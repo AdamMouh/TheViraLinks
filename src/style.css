@@ -411,11 +411,13 @@ body {
 .influencer-visual {
     position: relative;
     width: 100%;
-    max-width: 600px; /* Taille maximale pour l'image */
-    height: 700px; /* Hauteur fixe pour l'effet de débordement */
-    margin-top: -50px; /* Remonte légèrement dans la section précédente pour un effet dramatique */
-    margin-bottom: -150px; /* Tire la section d'en bas vers le haut */
-    opacity: 0; /* État initial pour l'animation scroll-reveal */
+    /* RÉDUCTION DE TAILLE */
+    max-width: 500px; /* Réduit la largeur max (était 600px) */
+    height: 600px; /* Réduit la hauteur (était 700px) */
+    /* FIN RÉDUCTION */
+    margin-top: -50px; 
+    margin-bottom: -150px;
+    opacity: 0; 
     transform: translateY(50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
@@ -428,17 +430,19 @@ body {
 .influencer-visual img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* L'image est contenue sans être coupée */
+    /* OPTIMISATION DE LA QUALITÉ : Fait en sorte que l'image remplisse l'espace */
+    object-fit: cover; /* CHANGÉ de 'contain' à 'cover' */
     
-    /* FILTRE MAGIQUE POUR LE BLEND-IN - TEMPORAIREMENT DÉSACTIVÉ POUR LE TEST */
-    /* filter: hue-rotate(270deg) saturate(1.5) brightness(1.1); */ 
+    /* FILTRE MAGIQUE STYLISÉ : Réactivé avec un ajustement pour moins d'agressivité */
+    filter: hue-rotate(270deg) saturate(1.3) brightness(1.05); 
     
-    /* Pour accentuer l'effet 3D de "sortie d'écran" - TEMPORAIREMENT DÉSACTIVÉ POUR LE TEST */
-    /* transform: perspective(1000px) rotateX(5deg) scale(1.1); */ 
+    /* Réactiver la transformation 3D */
+    transform: perspective(1000px) rotateX(5deg) scale(1.1); 
     
     box-shadow: 0 40px 80px rgba(181, 81, 199, 0.5);
-    border-radius: 15px; /* Adoucir les coins du cadre blanc Instagram */
-    transition: all 0.8s ease-out; /* Pour l'effet au chargement */
+    /* BORDS ARRONDIS : Augmenté la valeur */
+    border-radius: 30px; 
+    transition: all 0.8s ease-out; 
 }
 
 
@@ -666,14 +670,14 @@ body {
         grid-template-columns: 1fr;
     }
 
-    /* Styles responsive pour la nouvelle section */
+    /* Styles responsive pour la nouvelle section (Ajustés) */
     .cta-text-overlay h2 {
-        font-size: 2.5rem; /* Réduction pour les petits écrans */
+        font-size: 2.5rem;
     }
 
     .influencer-visual {
-        max-width: 450px;
-        height: 550px;
+        max-width: 400px; /* Réduit encore pour mobile */
+        height: 500px; /* Réduit encore pour mobile */
         margin-bottom: -100px;
     }
 
@@ -708,7 +712,7 @@ body {
         font-size: 1rem;
     }
     
-    /* Styles responsive pour la nouvelle section */
+    /* Styles responsive pour la nouvelle section (Ajustés) */
     .cta-text-overlay h2 {
         font-size: 1.8rem;
     }
