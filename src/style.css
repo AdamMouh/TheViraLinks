@@ -1,631 +1,107 @@
-/* ===== Reset & Base Styles ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ... (Styles de la Mission Section) ... */
 
-:root {
-    --gradient-start: #d2b0e9;
-    --gradient-end: #3b3297;
-    --glass-pink: #cd7dd1;
-    --glass-purple: #b551c7;
-    --glass-deep: #6533bd;
-    --white: #ffffff;
-    --white-transparent: rgba(255, 255, 255, 0.1);
-    --white-semi: rgba(255, 255, 255, 0.15);
-    --white-border: rgba(255, 255, 255, 0.2);
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-    background-attachment: fixed;
-    color: var(--white);
-    overflow-x: hidden;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ===== Glassmorphism Card Style ===== */
-.card {
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 24px;
-    border: 1px solid var(--white-border);
-    padding: 35px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    transform: translateY(30px);
-    box-shadow: 0 8px 32px rgba(101, 51, 189, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        transparent 100%);
-}
-
-.card.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 70px rgba(181, 81, 199, 0.4);
-    border-color: var(--glass-purple);
-    background: linear-gradient(135deg,
-        rgba(205, 125, 209, 0.15) 0%,
-        rgba(181, 81, 199, 0.1) 100%);
-}
-
-/* ===== Navbar ===== */
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.12) 0%,
-        rgba(255, 255, 255, 0.08) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--white-border);
-    padding: 15px 0;
-    box-shadow: 0 4px 24px rgba(101, 51, 189, 0.1);
-}
-
-.navbar .container {
+/* ===== NOUVELLE SECTION IMAGE-CTA (Find the right influencer) ===== */
+.image-cta-section {
+    padding: 80px 20px 0; /* Ajout du padding pour espacer */
+    overflow: hidden; /* Empêche le défilement horizontal si l'image déborde */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--white) 0%, var(--glass-pink) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    cursor: pointer;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
+.image-cta-wrapper {
     position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background: var(--glass-pink);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--white);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* ===== Hero Section ===== */
-.hero,
-.about-hero,
-.contact-hero {
-    min-height: 80vh;
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 100px 20px 80px;
 }
 
-.hero h1,
-.about-hero h1,
-.contact-hero h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-    line-height: 1.2;
+.cta-text-overlay {
+    z-index: 5; /* Assure que le texte est au-dessus de l'image si elle se chevauche */
+    margin-bottom: 50px;
 }
 
-.hero p,
-.about-hero p,
-.contact-hero p {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.2s forwards;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* ===== Buttons - Existing CTA and Submit ===== */
-.btn-cta,
-.btn-submit {
-    display: inline-block;
-    background: linear-gradient(135deg,
-        rgba(205, 125, 209, 0.3) 0%,
-        rgba(181, 81, 199, 0.25) 100%);
-    backdrop-filter: blur(10px);
-    color: var(--white);
-    padding: 16px 45px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.4s forwards;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-cta::before,
-.btn-submit::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-}
-
-.btn-cta:hover::before,
-.btn-submit:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.btn-cta:hover,
-.btn-submit:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 50px rgba(181, 81, 199, 0.5);
-    background: linear-gradient(135deg,
-        rgba(181, 81, 199, 0.5) 0%,
-        rgba(101, 51, 189, 0.4) 100%);
-    border-color: var(--glass-purple);
-}
-
-.btn-submit {
-    width: 100%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-/* ===== NEW BUTTON STYLE: .btn-primary (for Mission Section CTA) ===== */
-.btn-primary {
-    display: inline-block;
-    background: linear-gradient(45deg, var(--glass-pink), var(--glass-purple)); /* Un dégradé plus solide */
-    color: var(--white);
-    padding: 16px 45px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border: none;
-    box-shadow: 0 10px 30px rgba(181, 81, 199, 0.4);
-    transition: all 0.3s ease;
-    margin-top: 25px; /* Espace après le texte */
-}
-
-.btn-primary:hover {
-    transform: translateY(-5px); /* Léger soulèvement */
-    box-shadow: 0 15px 40px rgba(181, 81, 199, 0.6);
-}
-
-
-/* ===== Sections General Styles (Mission added here) ===== */
-.services,
-.mission, /* Ajouté ici */
-.team,
-.contact-section {
-    padding: 80px 20px;
-}
-
-.section-title {
-    text-align: center;
+.cta-text-overlay h2 {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 60px;
-    opacity: 1;
+    margin-bottom: 0;
+    /* Utilise votre dégradé de texte habituel */
     background: linear-gradient(135deg, var(--white) 0%, var(--glass-pink) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: 0 4px 12px rgba(181, 81, 199, 0.3);
+    opacity: 0; /* Pour l'animation JS */
+    animation: fadeInUp 1s ease 0.1s forwards; /* Animation d'apparition */
 }
 
-.section-title.fade-in {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-.services-grid,
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.card-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg,
-        rgba(205, 125, 209, 0.2) 0%,
-        rgba(181, 81, 199, 0.15) 100%);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    color: var(--glass-pink);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(181, 81, 199, 0.2);
-}
-
-.card:hover .card-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 8px 24px rgba(181, 81, 199, 0.4);
-}
-
-.card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: var(--white);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* ===== Mission Section (Nouveaux Styles) ===== */
-.mission {
-    /* Utilise le padding défini dans le groupe de sections ci-dessus */
-    text-align: center;
-    /* Crée un bloc visuellement distinct avec un effet Glassmorphism léger */
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(5px);
-    border-top: 1px solid var(--white-border);
-    border-bottom: 1px solid var(--white-border);
-}
-
-.mission .container {
-    max-width: 900px; /* Limite la largeur du texte pour la lisibilité */
-}
-
-.mission-text {
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    /* Dégradé pour le texte clé */
-    background: linear-gradient(135deg, var(--white) 0%, var(--glass-pink) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 2px 10px rgba(181, 81, 199, 0.3);
-}
-
-.mission p:not(.mission-text) {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 0;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-/* Retrait des styles inutilisés car le HTML a été simplifié */
-/* .mission-content est maintenant le container de la section mission */
-/* .mission-content.fade-in { opacity: 1; animation: fadeInUp 0.8s ease forwards; } */
-/* .mission-content h2, p sont gérés par les styles ci-dessus */
-
-/* ===== What Makes Us Different Section ===== */
-.different {
-    padding: 80px 20px;
-}
-
-.different-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.different-card {
-    text-align: center;
-}
-
-.different-card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.different-card p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-
-.different-card p:last-child {
-    margin-bottom: 0;
-}
-
-/* ===== Contact Section ===== */
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-}
-
-.contact-form {
-    padding: 40px;
-}
-
-.contact-form h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group input,
-.form-group textarea {
+.influencer-visual {
+    position: relative;
     width: 100%;
-    padding: 15px 20px;
-    background: var(--white-semi);
-    border: 1px solid var(--white-border);
-    border-radius: 12px;
-    color: var(--white);
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    max-width: 600px; /* Taille maximale pour l'image */
+    height: 700px; /* Hauteur fixe pour l'effet de débordement */
+    margin-top: -50px; /* Remonte légèrement dans la section précédente pour un effet dramatique */
+    margin-bottom: -150px; /* Tire la section d'en bas vers le haut */
+    opacity: 0; /* État initial pour l'animation scroll-reveal */
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+.influencer-visual.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--glass-purple);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.info-card {
-    padding: 40px;
+.influencer-visual img {
+    width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    object-fit: contain; /* L'image est contenue sans être coupée */
+    /* FILTRE MAGIQUE POUR LE BLEND-IN */
+    /* hue-rotate(270deg) tourne les couleurs vers le violet/magenta, saturate augmente la vivacité */
+    filter: hue-rotate(270deg) saturate(1.5) brightness(1.1); 
+    
+    /* Pour accentuer l'effet 3D de "sortie d'écran" */
+    transform: perspective(1000px) rotateX(5deg) scale(1.1); 
+    box-shadow: 0 40px 80px rgba(181, 81, 199, 0.5);
+    border-radius: 15px; /* Adoucir les coins du cadre blanc Instagram */
+    transition: all 0.8s ease-out; /* Pour l'effet au chargement */
 }
 
-.info-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
 
-.info-card p {
-    margin-bottom: 30px;
-}
+/* ... (Styles de la section different) ... */
 
-.social-icons-large {
-    display: flex;
-    gap: 20px;
-}
+/* ... (Styles de la section contact) ... */
 
-/* ===== Footer ===== */
-.footer {
-    padding: 40px 20px;
-    background: var(--white-transparent);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--white-border);
-    margin-top: 60px;
-}
+/* ... (Styles du Footer et Social Icons) ... */
 
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon {
-    width: 45px;
-    height: 45px;
-    background: var(--white-semi);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    transition: all 0.3s ease;
-    border: 1px solid var(--white-border);
-}
-
-.social-icon:hover {
-    transform: scale(1.15);
-    background: var(--glass-purple);
-    box-shadow: 0 5px 20px rgba(181, 81, 199, 0.4);
-}
-
-/* ===== Animations ===== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===== Responsive Design (Ajout de la section mission) ===== */
+/* ===== Responsive Design (Mise à jour pour la nouvelle section) ===== */
 @media (max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        flex-direction: column;
-        background: rgba(59, 50, 151, 0.95);
-        backdrop-filter: blur(15px);
-        width: 250px;
-        padding: 30px;
-        border-radius: 20px 0 0 20px;
-        border: 1px solid var(--white-border);
-        transition: right 0.3s ease;
-        gap: 20px;
+    /* ... (Styles existants pour le responsive) ... */
+
+    .cta-text-overlay h2 {
+        font-size: 2.5rem; /* Réduction pour les petits écrans */
     }
 
-    .nav-links.active {
-        right: 0;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(7px, 7px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    .hero h1,
-    .about-hero h1,
-    .contact-hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p,
-    .about-hero p,
-    .contact-hero p {
-        font-size: 1.2rem;
-    }
-
-    .mission-text { /* Ajustement pour mobile */
-        font-size: 1.4rem;
-    }
-
-    .mission p:not(.mission-text) {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .services-grid,
-    .different-content {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .footer .container {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
+    .influencer-visual {
+        max-width: 450px;
+        height: 550px;
+        margin-bottom: -100px;
     }
 }
 
 @media (max-width: 480px) {
-    .logo {
-        font-size: 1.4rem;
+    /* ... (Styles existants pour le responsive) ... */
+
+    .cta-text-overlay h2 {
+        font-size: 1.8rem;
     }
 
-    .hero h1,
-    .about-hero h1,
-    .contact-hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p,
-    .about-hero p,
-    .contact-hero p {
-        font-size: 1rem;
-    }
-
-    .btn-cta,
-    .btn-submit,
-    .btn-primary { /* Ajout du nouveau bouton ici */
-        padding: 12px 30px;
-        font-size: 1rem;
+    .influencer-visual {
+        max-width: 300px;
+        height: 400px;
     }
 }
