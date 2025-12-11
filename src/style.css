@@ -431,13 +431,13 @@ body {
     width: 100%;
     height: 100%;
     /* OPTIMISATION DE LA QUALITÉ : Fait en sorte que l'image remplisse l'espace */
-    object-fit: cover; /* CHANGÉ de 'contain' à 'cover' */
+    object-fit: cover; 
     
     /* FILTRE MAGIQUE STYLISÉ : Réactivé avec un ajustement pour moins d'agressivité */
     filter: hue-rotate(270deg) saturate(1.3) brightness(1.05); 
     
-    /* Réactiver la transformation 3D */
-    transform: perspective(1000px) rotateX(5deg) scale(1.1); 
+    /* CORRECTION: Désactivation de la transformation 3D qui causait la disparition de l'image */
+    /* transform: perspective(1000px) rotateX(5deg) scale(1.1); */ 
     
     box-shadow: 0 40px 80px rgba(181, 81, 199, 0.5);
     /* BORDS ARRONDIS : Augmenté la valeur */
@@ -574,9 +574,11 @@ body {
     height: 45px;
     background: var(--white-semi);
     border-radius: 50%;
+    /* CORRECTION: Les règles de centrage sont déjà présentes et correctes */
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
+    /* FIN CORRECTION */
     color: var(--white);
     transition: all 0.3s ease;
     border: 1px solid var(--white-border);
