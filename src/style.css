@@ -369,10 +369,77 @@ body {
     color: rgba(255, 255, 255, 0.85);
 }
 
-/* Retrait des styles inutilisés car le HTML a été simplifié */
-/* .mission-content est maintenant le container de la section mission */
-/* .mission-content.fade-in { opacity: 1; animation: fadeInUp 0.8s ease forwards; } */
-/* .mission-content h2, p sont gérés par les styles ci-dessus */
+/* ===== NOUVELLE SECTION IMAGE-CTA (Find the right influencer) ===== */
+.image-cta-section {
+    padding: 80px 20px 0; /* Ajout du padding pour espacer */
+    overflow: hidden; /* Empêche le défilement horizontal si l'image déborde */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-cta-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cta-text-overlay {
+    z-index: 5; /* Assure que le texte est au-dessus de l'image si elle se chevauche */
+    margin-bottom: 50px;
+}
+
+.cta-text-overlay h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    /* Utilise votre dégradé de texte habituel */
+    background: linear-gradient(135deg, var(--white) 0%, var(--glass-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 12px rgba(181, 81, 199, 0.3);
+    opacity: 0; /* Pour l'animation JS */
+    animation: fadeInUp 1s ease 0.1s forwards; /* Animation d'apparition */
+}
+
+.influencer-visual {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Taille maximale pour l'image */
+    height: 700px; /* Hauteur fixe pour l'effet de débordement */
+    margin-top: -50px; /* Remonte légèrement dans la section précédente pour un effet dramatique */
+    margin-bottom: -150px; /* Tire la section d'en bas vers le haut */
+    opacity: 0; /* État initial pour l'animation scroll-reveal */
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.influencer-visual.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.influencer-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* L'image est contenue sans être coupée */
+    /* FILTRE MAGIQUE POUR LE BLEND-IN */
+    /* hue-rotate(270deg) tourne les couleurs vers le violet/magenta, saturate augmente la vivacité */
+    filter: hue-rotate(270deg) saturate(1.5) brightness(1.1); 
+    
+    /* Pour accentuer l'effet 3D de "sortie d'écran" */
+    transform: perspective(1000px) rotateX(5deg) scale(1.1); 
+    box-shadow: 0 40px 80px rgba(181, 81, 199, 0.5);
+    border-radius: 15px; /* Adoucir les coins du cadre blanc Instagram */
+    transition: all 0.8s ease-out; /* Pour l'effet au chargement */
+}
+
 
 /* ===== What Makes Us Different Section ===== */
 .different {
@@ -528,7 +595,7 @@ body {
     }
 }
 
-/* ===== Responsive Design (Ajout de la section mission) ===== */
+/* ===== Responsive Design (Mise à jour pour la nouvelle section) ===== */
 @media (max-width: 768px) {
     .nav-links {
         position: fixed;
@@ -598,6 +665,17 @@ body {
         grid-template-columns: 1fr;
     }
 
+    /* Styles responsive pour la nouvelle section */
+    .cta-text-overlay h2 {
+        font-size: 2.5rem; /* Réduction pour les petits écrans */
+    }
+
+    .influencer-visual {
+        max-width: 450px;
+        height: 550px;
+        margin-bottom: -100px;
+    }
+
     .footer .container {
         flex-direction: column;
         gap: 20px;
@@ -627,5 +705,15 @@ body {
     .btn-primary { /* Ajout du nouveau bouton ici */
         padding: 12px 30px;
         font-size: 1rem;
+    }
+    
+    /* Styles responsive pour la nouvelle section */
+    .cta-text-overlay h2 {
+        font-size: 1.8rem;
+    }
+
+    .influencer-visual {
+        max-width: 300px;
+        height: 400px;
     }
 }
