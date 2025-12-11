@@ -56,10 +56,10 @@ sectionTitles.forEach(title => {
     observer.observe(title);
 });
 
-// Observe mission content
-const missionContent = document.querySelector('.mission-content');
-if (missionContent) {
-    observer.observe(missionContent);
+// Observe mission section (CORRECTION APPLIQUÉE ICI)
+const missionSection = document.querySelector('.mission');
+if (missionSection) {
+    observer.observe(missionSection);
 }
 
 // ===== Contact Form Handling =====
